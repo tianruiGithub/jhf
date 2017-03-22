@@ -8,7 +8,6 @@
 			<param-value>com.jhs.common.config.MainConfig</param-value>
 		</init-param>
 	</filter>
-	
 	<filter-mapping>
 		<filter-name>jfinal</filter-name>
 		<url-pattern>/*</url-pattern>

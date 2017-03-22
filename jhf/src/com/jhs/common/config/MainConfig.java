@@ -10,9 +10,9 @@ import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
-import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 
 public class MainConfig extends JFinalConfig {
@@ -65,6 +65,8 @@ public class MainConfig extends JFinalConfig {
 		//添加到插件列表中
 		me.add(dbPlugin);
 		me.add(arp);
+		// 缓存插件
+		me.add(new EhCachePlugin());
 	}
 	/**
 	 * 配置全局拦截器
