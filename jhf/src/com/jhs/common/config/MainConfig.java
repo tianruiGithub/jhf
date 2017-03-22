@@ -35,8 +35,6 @@ public class MainConfig extends JFinalConfig {
 		me.setViewType(ViewType.JSP);
 		//设置404渲染视图
 		//me.setError404View("404.html");
-		
-		
 	}
 	/**
 	 * 配置JFinal路由映射
