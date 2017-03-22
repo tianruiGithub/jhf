@@ -9,6 +9,8 @@ import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
+import com.jhs.common.model._MappingKit;
+import com.jhs.controller.IndexController;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -41,7 +43,8 @@ public class MainConfig extends JFinalConfig {
 	 */
 	@Override
 	public void configRoute(Routes me) {
-
+		// 首页
+		me.add("/", IndexController.class, "/WEB-INF/views/main");
 	}
 	/**
 	 * 配置JFinal插件
@@ -59,7 +62,7 @@ public class MainConfig extends JFinalConfig {
 		arp.setShowSql(PropKit.getBoolean("devMode"));
 		arp.setDialect(new MysqlDialect());
 		/********在此添加数据库 表-Model 映射*********/
-		
+		_MappingKit.mapping(arp);
 		//添加到插件列表中
 		me.add(dbPlugin);
 		me.add(arp);

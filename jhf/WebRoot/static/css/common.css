@@ -1,0 +1,133 @@
+/*!
+ * 项目全局样式
+ * Copyright 2017 天瑞
+ */
+
+/*****************登陸***********************/
+.m-login-box {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	margin-left: -500px;
+	margin-top: 0px;
+	width: 1000px;
+	height: 450px;
+}
+
+.m-login-left {
+	float: left;
+	width: 700px;
+	height: 400px;
+}
+
+.m-login-top {
+	float: left;
+	width: 700px;
+	height: 90px;
+}
+
+.m-login-logo {
+	float: left;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+}
+
+.m-login-title {
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	font-size: 30px;
+	font-family: '幼圆';
+}
+
+.m-login-bottom {
+	float: left;
+	width: 700px;
+	height: 300px;
+}
+
+.m-login-right {
+	float: right;
+	width: 300px;
+	height: 400px;
+}
+
+.m-login-content {
+	float: left;
+	width: 270px;
+	height: 400px;
+}
+
+.m-login-tag {
+	float: left;
+	width: 100%;
+	margin-top: 25px;
+	height: 90px;
+	line-height: 90px;
+	padding-left: 10px;
+	font-size: 25px;
+	font-family: '幼圆';
+	text-align: center;
+}
+
+.m-login-block {
+	float: left;
+	width: 100%;
+	height: 300px;
+}
+
+.m-login-input {
+	float: left;
+	width: 90%;
+	margin-left: 5%;
+	height: 45px;
+	line-height: 45px;
+	border: 1px solid #e0e0e0;
+}
+
+.m-login-input i {
+	float: left;
+	font-size: 18px;
+	color: #a0a0a0;
+	margin-left: 5px;
+	margin-top: 12px;
+}
+
+.m-login-input input {
+	color: #333;
+	float: left;
+	width: 200px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 7px;
+	border: 0px;
+}
+
+.m-login-button {
+	float: left;
+	cursor: pointer;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 30px;
+	height: 45px;
+	background-color: #fe6b5b;
+	outline: 0;
+	border: 0px;
+	font-size: 15px;
+	color: white;
+}
+
+.m-login-checkbox {
+	float: right;
+	margin-top: 63px;
+	margin-right: 10%;
+}
+
+.m-login-footer {
+	float: left;
+	border-top: 0px;
+	padding-top: 20px;
+	width: 100%;
+	margin-top: 10px;
+}
