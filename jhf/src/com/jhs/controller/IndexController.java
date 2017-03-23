@@ -1,13 +1,15 @@
 package com.jhs.controller;
 
 import com.jfinal.aop.Before;
+import com.jfinal.aop.Duang;
 import com.jfinal.core.Controller;
+import com.jfinal.ext.interceptor.POST;
 import com.jfinal.kit.Ret;
 import com.jhs.common.model.SysAdmin;
 import com.jhs.interceptor.MenuInterceptor;
 import com.jhs.interceptor.SessionInterceptor;
+import com.jhs.service.login.LoginService;
 import com.jhs.util.CaptchaUtil;
-import com.jhs.util.MD5Util;
 import com.jhs.validator.login.LoginValidator;
 
 /**
@@ -18,6 +20,8 @@ import com.jhs.validator.login.LoginValidator;
  */
 public class IndexController extends Controller {
 
+	public static final LoginService me = Duang.duang(LoginService.class);
+	
 	/**
 	 * 后台主页
 	 */
@@ -40,16 +44,12 @@ public class IndexController extends Controller {
 	 * @param adminPwd
 	 * @param captcha
 	 */
-	@Before(LoginValidator.class)
+	@Before({LoginValidator.class,POST.class})
 	public void login() {
 		Ret ret = new Ret();
-		Object[] paras = new Object[2];
-		paras[0] = getPara("adminName");
-		paras[1] = MD5Util.toMd5String(getPara("adminPwd"));
 		boolean validate = CaptchaUtil.validate(this, getPara("captcha"));
 		if (validate) {
-			SysAdmin sa = SysAdmin.dao.findFirst("select * from sys_admin where admin_name = ? and admin_pwd = ?",
-					paras);
+			SysAdmin sa =  me.login( getPara("adminName"), getPara("adminPwd"));
 			if (sa != null) {
 				getSession().setAttribute("User", sa.getAdminName());
 				getSession().setAttribute("Rank", sa.getAdminRank());

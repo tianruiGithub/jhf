@@ -11,6 +11,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
 import com.jhs.common.model._MappingKit;
 import com.jhs.controller.IndexController;
+import com.jhs.controller.system.ConfWeixinController;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -45,6 +46,9 @@ public class MainConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		// 首页
 		me.add("/", IndexController.class, "/WEB-INF/views/main");
+		
+		// 系统设置 
+		me.add("/system/weixin",ConfWeixinController.class,"/WEB-INF/views/system/weixin");
 	}
 	/**
 	 * 配置JFinal插件

@@ -115,7 +115,7 @@ a, a:hover, a:active {
 	width: 100%;
 	height: 62px;
 	background-color: white;
-	border-bottom: 1px solid #f0f0f0;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 .m-top-title {
@@ -175,6 +175,8 @@ a, a:hover, a:active {
 	height: 37px;
 	margin:0px;
 	background-color:white;
+	border-bottom:1px solid #e0e0e0;
+	font-size:13px;
 }
 
 .m-item {

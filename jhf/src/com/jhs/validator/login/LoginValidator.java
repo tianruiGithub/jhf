@@ -3,7 +3,6 @@ package com.jhs.validator.login;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
 import com.jfinal.validate.Validator;
-import com.jhs.util.CaptchaUtil;
 
 /**
  * 登陆验证

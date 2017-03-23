@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseSysAdmin;
  */
 @SuppressWarnings("serial")
 public class SysAdmin extends BaseSysAdmin<SysAdmin> {
-	public static final SysAdmin dao = new SysAdmin().dao();
+	
 }

@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseConfWeixin;
  */
 @SuppressWarnings("serial")
 public class ConfWeixin extends BaseConfWeixin<ConfWeixin> {
-	public static final ConfWeixin dao = new ConfWeixin().dao();
+	
 }

@@ -32,7 +32,7 @@
         </a>
       </div>
       <div class="m-menu-content ${menu_system}">
-        <a href="${pageContext.request.contextPath}/system/weixin/detail"> &nbsp;<i
+        <a href="${pageContext.request.contextPath}/system/weixin/edit"> &nbsp;<i
           class="glyphicon glyphicon-wrench"></i> <span>系 统</span>
         </a>
       </div>

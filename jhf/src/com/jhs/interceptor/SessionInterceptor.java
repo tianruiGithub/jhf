@@ -14,6 +14,7 @@ public class SessionInterceptor implements Interceptor {
 	@Override
 	public void intercept(Invocation inv) {
 		Controller controller = inv.getController();
+		System.out.println("ssssssssssssssssssssss"+controller.getSessionAttr("User"));
 		try {
 			if (controller.getSessionAttr("User") != null)
 				inv.invoke();
