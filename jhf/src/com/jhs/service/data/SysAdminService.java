@@ -1,4 +1,4 @@
-package com.jhs.service.login;
+package com.jhs.service.data;
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -11,14 +11,16 @@ import com.jhs.util.MD5Util;
  *
  */
 @Before(Tx.class)
-public class LoginService {
+public class SysAdminService {
 
-	public static final SysAdmin dao = new SysAdmin().dao();
+	public static SysAdminService me = new SysAdminService();
+	
+	private static final SysAdmin dao = new SysAdmin().dao();
 	
 	/**
 	 * 管理员登陆
-	 * @param adminName
-	 * @param adminPwd
+	 * @param adminName 账号
+	 * @param adminPwd 密码
 	 * @return
 	 */
 	public SysAdmin login(String adminName,String adminPwd){

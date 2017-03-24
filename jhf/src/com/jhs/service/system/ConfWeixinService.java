@@ -12,23 +12,30 @@ import com.jhs.common.model.ConfWeixin;
 @Before(Tx.class)
 public class ConfWeixinService {
 	
-	public static final ConfWeixin dao = new ConfWeixin().dao();
+	public static ConfWeixinService me = new ConfWeixinService();
 	
-	public ConfWeixin query(){
-		return dao.findFirstByCache("conf_weixin", null, "select * from conf_weixin where id = 1");
+	private static final ConfWeixin dao = new ConfWeixin().dao();
+	
+	/**
+	 * 查询
+	 * @param id 配置ID
+	 * @return
+	 */
+	public ConfWeixin queryById(Object id){
+		return dao.findFirstByCache("conf_weixin", null, "select * from conf_weixin where id = ?",id);
 	}
 	/**
 	 * 编辑
-	 * @param id
+	 * @param id 配置ID
 	 * @return
 	 */
-	public ConfWeixin edit(){
-		return dao.findFirst("select * from conf_weixin where id = 1");
+	public ConfWeixin edit(Object id){
+		return dao.findFirst("select * from conf_weixin where id = ?",id);
 	}
 	
 	/**
 	 * 更新
-	 * @param cf
+	 * @param cf 配置对象
 	 * @return
 	 */
 

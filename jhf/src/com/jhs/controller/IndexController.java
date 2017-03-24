@@ -1,14 +1,13 @@
 package com.jhs.controller;
 
 import com.jfinal.aop.Before;
-import com.jfinal.aop.Duang;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
 import com.jfinal.kit.Ret;
 import com.jhs.common.model.SysAdmin;
 import com.jhs.interceptor.MenuInterceptor;
 import com.jhs.interceptor.SessionInterceptor;
-import com.jhs.service.login.LoginService;
+import com.jhs.service.data.SysAdminService;
 import com.jhs.util.CaptchaUtil;
 import com.jhs.validator.login.LoginValidator;
 
@@ -19,8 +18,6 @@ import com.jhs.validator.login.LoginValidator;
  *
  */
 public class IndexController extends Controller {
-
-	public static final LoginService me = Duang.duang(LoginService.class);
 	
 	/**
 	 * 后台主页
@@ -49,7 +46,7 @@ public class IndexController extends Controller {
 		Ret ret = new Ret();
 		boolean validate = CaptchaUtil.validate(this, getPara("captcha"));
 		if (validate) {
-			SysAdmin sa =  me.login( getPara("adminName"), getPara("adminPwd"));
+			SysAdmin sa =  SysAdminService.me.login( getPara("adminName"), getPara("adminPwd"));
 			if (sa != null) {
 				getSession().setAttribute("User", sa.getAdminName());
 				getSession().setAttribute("Rank", sa.getAdminRank());

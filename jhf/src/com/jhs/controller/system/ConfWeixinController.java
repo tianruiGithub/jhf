@@ -1,7 +1,6 @@
 package com.jhs.controller.system;
 
 import com.jfinal.aop.Before;
-import com.jfinal.aop.Duang;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
 import com.jfinal.kit.Ret;
@@ -20,14 +19,12 @@ import com.jhs.validator.system.ConfWeixinValidator;
  */
 @Before({ SessionInterceptor.class, MenuInterceptor.class })
 public class ConfWeixinController extends Controller{
-
-	public static final ConfWeixinService me = Duang.duang(ConfWeixinService.class);
 	
 	/**
 	 * 编辑页面
 	 */
 	public void edit(){
-		setAttr("weixin",me.edit());
+		setAttr("weixin",ConfWeixinService.me.edit(1));
 		render("index.jsp");
 	}
 	
@@ -41,7 +38,7 @@ public class ConfWeixinController extends Controller{
 		Ret ret = new Ret();
 		ConfWeixin cf = getModel(ConfWeixin.class,"weixin");
 		cf.setId(Long.parseLong("1"));
-		if(me.update(cf)){
+		if(ConfWeixinService.me.update(cf)){
 			ret.set("status","success");
 			ret.set("msg","更新成功");
 		}

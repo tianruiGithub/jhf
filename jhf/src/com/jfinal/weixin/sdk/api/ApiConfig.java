@@ -8,7 +8,6 @@ package com.jfinal.weixin.sdk.api;
 
 import java.io.Serializable;
 
-import com.jfinal.aop.Duang;
 import com.jhs.common.model.ConfWeixin;
 import com.jhs.service.system.ConfWeixinService;
 
@@ -19,8 +18,6 @@ public class ApiConfig implements Serializable {
 
 	private static final long serialVersionUID = 5243926308290263767L;
 	
-	public static final ConfWeixinService me = Duang.duang(ConfWeixinService.class);
-	
 	private String token = null;
 	private String appId = null;
 	private String appSecret = null;
@@ -28,7 +25,7 @@ public class ApiConfig implements Serializable {
 	private boolean messageEncrypt = false; // 消息加密与否
 
 	public ApiConfig() {
-		ConfWeixin cw = me.query();
+		ConfWeixin cw = ConfWeixinService.me.queryById(1);
 		// 配置微信 API 相关常量
 		setToken(cw.getToken());
 		setAppId(cw.getWeixinAppid());

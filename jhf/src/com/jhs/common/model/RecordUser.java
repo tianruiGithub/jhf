@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseRecordUser;
  */
 @SuppressWarnings("serial")
 public class RecordUser extends BaseRecordUser<RecordUser> {
-	public static final RecordUser dao = new RecordUser().dao();
+	
 }
