@@ -14,6 +14,9 @@ public class ConfWeixinService {
 	
 	public static final ConfWeixin dao = new ConfWeixin().dao();
 	
+	public ConfWeixin query(){
+		return dao.findFirstByCache("conf_weixin", null, "select * from conf_weixin where id = 1");
+	}
 	/**
 	 * 编辑
 	 * @param id
