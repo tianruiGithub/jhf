@@ -2,8 +2,6 @@ package com.jhs.service.system;
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import com.jfinal.plugin.ehcache.CacheInterceptor;
-import com.jfinal.plugin.ehcache.CacheName;
 import com.jhs.common.model.ConfWeixin;
 
 /**
@@ -30,9 +28,8 @@ public class ConfWeixinService {
 	 * @param cf
 	 * @return
 	 */
-	@Before({CacheInterceptor.class})
-	@CacheName("conf_weixin")
+
 	public boolean update(ConfWeixin cf){
-		return cf.update();
+		return cf.update();	
 	}
 }
