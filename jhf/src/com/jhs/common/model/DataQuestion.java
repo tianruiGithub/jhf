@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseDataQuestion;
  */
 @SuppressWarnings("serial")
 public class DataQuestion extends BaseDataQuestion<DataQuestion> {
-	public static final DataQuestion dao = new DataQuestion().dao();
+	
 }

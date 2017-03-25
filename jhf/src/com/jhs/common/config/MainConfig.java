@@ -11,7 +11,10 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
 import com.jhs.common.model._MappingKit;
 import com.jhs.controller.IndexController;
+import com.jhs.controller.data.DataQuestionController;
+import com.jhs.controller.data.RecordTestController;
 import com.jhs.controller.system.ConfWeixinController;
+import com.jhs.controller.weixin.WeixinController;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -46,9 +49,13 @@ public class MainConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		// 首页
 		me.add("/", IndexController.class, "/WEB-INF/views/main");
-		
+		// 数据
+		me.add("/data/question",DataQuestionController.class,"/WEB-INF/views/data/question");
+		me.add("/data/test",RecordTestController.class,"/WEB-INF/views/data/test");
 		// 系统设置 
 		me.add("/system/weixin",ConfWeixinController.class,"/WEB-INF/views/system/weixin");
+		//微信
+		me.add("/weixin",WeixinController.class,"/WEB-INF/views/weixin");
 	}
 	/**
 	 * 配置JFinal插件

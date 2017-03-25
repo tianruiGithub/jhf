@@ -20,7 +20,7 @@ public class RecordUserService {
 	 * @param ru 用户对象
 	 * @return
 	 */
-	public boolean save(RecordUser ru){
+	public boolean create(RecordUser ru){
 		return ru.save();
 	}
 	

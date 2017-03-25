@@ -41,6 +41,14 @@ public abstract class BaseRecordTest<M extends BaseRecordTest<M>> extends Model<
 		return get("demand_no");
 	}
 
+	public void setPhysiqueNo(java.lang.String physiqueNo) {
+		set("physique_no", physiqueNo);
+	}
+
+	public java.lang.String getPhysiqueNo() {
+		return get("physique_no");
+	}
+	
 	public void setTestFeature(java.lang.String testFeature) {
 		set("test_feature", testFeature);
 	}

@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseDataPhysique;
  */
 @SuppressWarnings("serial")
 public class DataPhysique extends BaseDataPhysique<DataPhysique> {
-	public static final DataPhysique dao = new DataPhysique().dao();
+
 }

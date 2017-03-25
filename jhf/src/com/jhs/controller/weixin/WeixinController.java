@@ -96,7 +96,7 @@ public class WeixinController extends ApiController{
 						ru.setUserCity(JSON.parseObject(userStr).getString("city"));
 						ru.setUserHead(JSON.parseObject(userStr).getString("headimgurl"));
 						ru.setUserSubscribeTime(DateUtil.formatTime(JSON.parseObject(userStr).getIntValue("subscribe_time")));
-						RecordUserService.me.save(ru);
+						RecordUserService.me.create(ru);
 					}
 				}
 			}
@@ -132,7 +132,7 @@ public class WeixinController extends ApiController{
 	 */
 	@Before(JSSDKInterceptor.class)
 	public void pifu(){
-		setAttr("openid",getSessionAttr("OpenId"));
+		setAttr("openId",getSessionAttr("OpenId"));
 		render("test_pifu.jsp");
 	}
 	
@@ -141,7 +141,7 @@ public class WeixinController extends ApiController{
 	 */
 	@Before(JSSDKInterceptor.class)
 	public void qudou(){
-		setAttr("openid",getSessionAttr("OpenId"));
+		setAttr("openId",getSessionAttr("OpenId"));
 		render("test_qudou.jsp");
 	}
 	
@@ -150,7 +150,7 @@ public class WeixinController extends ApiController{
 	 */
 	@Before(JSSDKInterceptor.class)
 	public void richang(){
-		setAttr("openid",getSessionAttr("OpenId"));
+		setAttr("openId",getSessionAttr("OpenId"));
 		render("test_richang.jsp");
 	}
 	

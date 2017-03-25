@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseRecordTest;
  */
 @SuppressWarnings("serial")
 public class RecordTest extends BaseRecordTest<RecordTest> {
-	public static final RecordTest dao = new RecordTest().dao();
+	
 }
