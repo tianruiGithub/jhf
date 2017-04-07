@@ -11,6 +11,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
 import com.jhs.common.model._MappingKit;
 import com.jhs.controller.IndexController;
+import com.jhs.controller.data.DataDemandController;
 import com.jhs.controller.data.DataQuestionController;
 import com.jhs.controller.data.RecordTestController;
 import com.jhs.controller.system.ConfWeixinController;
@@ -50,6 +51,7 @@ public class MainConfig extends JFinalConfig {
 		// 首页
 		me.add("/", IndexController.class, "/WEB-INF/views/main");
 		// 数据
+		me.add("/data/demand",DataDemandController.class,"/WEB-INF/views/data/demand");
 		me.add("/data/question",DataQuestionController.class,"/WEB-INF/views/data/question");
 		me.add("/data/test",RecordTestController.class,"/WEB-INF/views/data/test");
 		// 系统设置 

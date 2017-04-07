@@ -1,11 +1,11 @@
 /*!
- * 项目全局样式
- * Copyright 2017 天瑞
+ * 椤圭洰鍏ㄥ眬鏍峰紡
+ * Copyright 2017 澶╃憺
  */
 .body {
 	margin: 0;
 	padding: 0px;
-	font-family: "黑体";
+	font-family: "榛戜綋";
 	min-width: 1000px;
 }
 
@@ -92,7 +92,7 @@ a, a:hover, a:active {
 	text-align: center;
 	line-height: 50px;
 	font-size: 14px;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 }
 
 .popover {
@@ -125,7 +125,7 @@ a, a:hover, a:active {
 	height: 61px;
 	line-height: 61px;
 	font-size: 20px;
-	font-family: '幼圆';
+	font-family: '骞煎渾';
 }
 
 .m-top-tag {
@@ -133,7 +133,7 @@ a, a:hover, a:active {
 	height: 61px;
 	text-align: center;
 	line-height: 61px;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 }
 
 .m-top-i {
@@ -156,7 +156,7 @@ a, a:hover, a:active {
 	text-align: center;
 	line-height: 61px;
 	font-size: 15px;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 }
 
 .m-top-logout {
@@ -240,7 +240,7 @@ a, a:hover, a:active {
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 	font-size: 14px;
 	border-bottom: 1px solid #f0f0f0;
 }
@@ -256,7 +256,7 @@ a, a:hover, a:active {
 	text-align: center;
 	font-size: 18px;
 	color: #333;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 }
 
 .m-main-bar {
@@ -265,7 +265,7 @@ a, a:hover, a:active {
 	line-height: 40px;
 	text-align: center;
 	font-size: 14px;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 	background-color: #19b955;
 	color: white;
 }
@@ -278,7 +278,7 @@ a, a:hover, a:active {
 	line-height: 80px;
 	text-align: center;
 	font-size: 18px;
-	font-family: "幼圆";
+	font-family: "骞煎渾";
 }
 
 .m-main-click:hover {
@@ -430,7 +430,7 @@ a, a:hover, a:active {
 	transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg); /* IE 9 */
 	-moz-transform: rotate(-45deg); /* Firefox */
-	-webkit-transform: rotate(-45deg); /* Safari 和 Chrome */
+	-webkit-transform: rotate(-45deg); /* Safari 鍜� Chrome */
 	-o-transform: rotate(-45deg);
 }
 .m-image-type span{
@@ -493,7 +493,7 @@ a, a:hover, a:active {
 	width:100%;
 	height:90px;
 }
-/*****************登陸***********************/
+/*****************鐧婚櫢***********************/
 .m-login-box {
 	position: absolute;
 	left: 50%;
@@ -528,7 +528,7 @@ a, a:hover, a:active {
 	margin-left: 10px;
 	margin-top: 10px;
 	font-size: 30px;
-	font-family: '幼圆';
+	font-family: '骞煎渾';
 }
 
 .m-login-bottom {
@@ -557,7 +557,7 @@ a, a:hover, a:active {
 	line-height: 90px;
 	padding-left: 10px;
 	font-size: 25px;
-	font-family: '幼圆';
+	font-family: '骞煎渾';
 	text-align: center;
 }
 
@@ -592,6 +592,8 @@ a, a:hover, a:active {
 	margin-left: 5px;
 	margin-top: 7px;
 	border: 0px;
+	line-height:30px;
+	padding-left:5px;
 }
 
 .m-login-button {

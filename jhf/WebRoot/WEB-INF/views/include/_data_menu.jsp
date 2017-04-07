@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="m-item">
 	<div class="m-item-menu ${menu_data_demand}" style="margin-top: 18px;">
-		<a href="${pageContext.request.contextPath}/data/demand/list"><i
+		<a href="${pageContext.request.contextPath}/data/demand"><i
 			class="Hui-iconfont Hui-iconfont-tags"></i>&nbsp;需 求</a>
 	</div>
 	<div class="m-item-menu ${menu_data_physique}">

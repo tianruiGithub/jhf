@@ -7,12 +7,12 @@
   <div class="m-block">
     <div class="m-menu">
       <div class="m-menu-content ${menu_main}">
-        <a href="${pageContext.request.contextPath}/main">&nbsp; <i
+        <a href="${pageContext.request.contextPath}/main">&nbsp;<i
           class="glyphicon glyphicon-home"></i> <span>概 况</span>
         </a>
       </div>
       <div class="m-menu-content ${menu_data}">
-        <a href="${pageContext.request.contextPath}/data/demand/list"> &nbsp;<i
+        <a href="${pageContext.request.contextPath}/data/demand"> &nbsp;<i
           class="glyphicon glyphicon-th-list"></i> <span>管 理 </span>
         </a>
       </div>

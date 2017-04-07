@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseDataDemand;
  */
 @SuppressWarnings("serial")
 public class DataDemand extends BaseDataDemand<DataDemand> {
-	public static final DataDemand dao = new DataDemand().dao();
+	
 }
