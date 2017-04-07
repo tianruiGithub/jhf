@@ -1,5 +1,7 @@
 package com.jhs.service.data;
 
+import java.util.List;
+
 import com.jfinal.aop.Before;
 import com.jfinal.kit.Ret;
 import com.jfinal.plugin.activerecord.Db;
@@ -22,7 +24,14 @@ public class DataDemandService {
 	private static final DataDemand dao = new DataDemand().dao();
 	
 	/**
-	 * 获取数据列表
+	 * 查询所有需求
+	 * @return
+	 */
+	public List<DataDemand> queryAll(){
+		return dao.find("select * from data_demand");
+	}
+	/**
+	 * 检索需求
 	 * @param search 条件对象
 	 * @return
 	 */
@@ -45,7 +54,7 @@ public class DataDemandService {
 		paras[1] = dd.getDemandNo();
 		paras[2] = dd.getDemandName();
 		paras[3] = dd.getDemandSecondName();
-		if(Db.queryLong("select * from data_demand where demand_id = ? and (demand_no = ? or demand_name = ? or demand_second_name = ?)", paras) > 0){
+		if(Db.queryLong("select count(*) from data_demand where demand_id != ? and (demand_no = ? or demand_name = ? or demand_second_name = ?)", paras) > 0){
 			ret.set("status","fail");
 			ret.set("msg","编号、名称或别名已存在！");
 		}

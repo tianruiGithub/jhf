@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../include/_meta.jsp" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/plugins/bootstrap-editable/bootstrap-editable.css">
@@ -13,7 +14,7 @@
 	<div class="m-right">
 		<jsp:include page="../../include/_top.jsp" />
 		<nav class="breadcrumb m-breadcrumb">
-			<i class="glyphicon glyphicon-th-list"></i>&nbsp;管 理 > 需 求
+			<i class="glyphicon glyphicon-th-list"></i>&nbsp;管 理 > 体 质
 		</nav>
 		<jsp:include page="../../include/_data_menu.jsp" />
 		<div class="m-content">
@@ -24,10 +25,11 @@
 					</button>
 				</div>
 				<table id="table" data-toolbar="#toolbar" data-search="true"
-					data-sort-name="demand_no" data-sort-order="asc"
+					data-sort-name="physique_no" data-sort-order="asc"
 					data-show-refresh="true" data-show-export="true"
 					data-show-export="true" data-export-types="['excel']"
-					data-export-options='{"fileName": "需求信息"}' data-show-columns="true">
+					data-page-list="[10, 25, 50, 100, ALL]"
+					data-export-options='{"fileName": "体质信息"}' data-show-columns="true">
 				</table>
 			</div>
 			<jsp:include page="../../include/_bottom.jsp" />
@@ -42,12 +44,22 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title">添加需求</h4>
+						<h4 class="modal-title">添加体质</h4>
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label for="mDemandNo">需求编号</label> <select class="form-control"
+							<label for="mDemandNo">所属需求</label> <select class="form-control"
 								name="demand_no" id="mDemandNo" lay-verify="required">
+								<option value="">请选择所属需求</option>
+								<c:forEach items="${demandList}" var="row" varStatus="status">
+									<option value="${row.demand_no}">${row.demand_name}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="mPhysiqueNo">体质编号</label> <select
+								class="form-control" name="physique_no" id="mPhysiqueNo"
+								lay-verify="required">
 								<option value="">请选择编号</option>
 								<option value="01">01</option>
 								<option value="02">02</option>
@@ -68,14 +80,19 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="mDemandName">需求名称</label> <input type="text"
-								id="mDemandName" class="form-control" name="demand_name"
+							<label for="mPhysiqueName">体质名称</label> <input type="text"
+								id="mPhysiqueName" class="form-control" name="physique_name"
 								lay-verify="required">
 						</div>
 						<div class="form-group">
-							<label for="mDemandSecondName">需求别名</label> <input
-								id="mDemandSecondName" type="text" name="demand_second_name"
-								class="form-control" lay-verify="required">
+							<label for="mPhysiqueGuanlian">体质影响因素</label> <input
+								id="mPhysiqueGuanlian" type="text" name="physique_guanlian"
+								class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="mPhysiqueGuanlian">体质介绍链接</label> <input
+								id="mPhysiqueIntroduce" type="text" name="physique_introduce"
+								class="form-control">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -102,6 +119,7 @@
 		src="${pageContext.request.contextPath}/static/plugins/tableExport/tableExport.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/plugins/layui/layui.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/script/data/demand.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/static/script/data/physique.js"></script>
 </body>
 </html>

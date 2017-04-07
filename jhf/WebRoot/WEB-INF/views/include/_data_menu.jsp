@@ -7,7 +7,7 @@
 			class="Hui-iconfont Hui-iconfont-tags"></i>&nbsp;需 求</a>
 	</div>
 	<div class="m-item-menu ${menu_data_physique}">
-		<a href="${pageContext.request.contextPath}/data/physique/list"><i
+		<a href="${pageContext.request.contextPath}/data/physique"><i
 			class="Hui-iconfont Hui-iconfont-practice"></i>&nbsp;体 质</a>
 	</div>
 	<div class="m-item-menu ${menu_data_xuewei}">

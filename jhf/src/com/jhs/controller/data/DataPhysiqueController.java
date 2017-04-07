@@ -1,30 +1,30 @@
 package com.jhs.controller.data;
 
-import java.util.List;
-
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
 import com.jfinal.kit.Ret;
 import com.jfinal.plugin.activerecord.Page;
-import com.jhs.common.model.DataDemand;
+import com.jhs.common.model.DataPhysique;
 import com.jhs.interceptor.MenuInterceptor;
 import com.jhs.interceptor.SessionInterceptor;
 import com.jhs.po.Search;
 import com.jhs.service.data.DataDemandService;
-import com.jhs.validator.data.DataDemandValidator;
+import com.jhs.service.data.DataPhysiqueService;
+import com.jhs.validator.data.DataPhysiqueValidator;
 
 /**
- * 需求Controller
- * @author liuyang
+ * 体质Controller
+ * @author 刘阳
  *
  */
 @Before({ SessionInterceptor.class, MenuInterceptor.class })
-public class DataDemandController extends Controller {
-
-	static DataDemandService service = DataDemandService.me;
+public class DataPhysiqueController extends Controller{
+	
+	static DataPhysiqueService service = DataPhysiqueService.me;
 
 	public void index() {
+		setAttr("demandList",DataDemandService.me.queryAll());
 		render("index.jsp");
 	}
 	
@@ -44,7 +44,7 @@ public class DataDemandController extends Controller {
 		search.setDate2(getPara("date2"));
 		search.setOrder(getPara("order"));
 		search.setSort(getPara("sort"));
-		Page<DataDemand> page=service.paginate(search);
+		Page<DataPhysique> page=service.paginate(search);
 		Ret ret = new Ret();
 		ret.set("rows",page.getList());
 		ret.set("total",page.getTotalRow());
@@ -54,26 +54,27 @@ public class DataDemandController extends Controller {
 	/**
 	 * 更新需求
 	 */
-	@Before({POST.class,DataDemandValidator.class})
+	@Before({POST.class,DataPhysiqueValidator.class})
 	public void modify(){
-		DataDemand dd = new DataDemand();
-		dd.setDemandId(Long.parseLong(getPara("demand_id")));
-		dd.setDemandNo(getPara("demand_no"));
-		dd.setDemandName(getPara("demand_name"));
-		dd.setDemandSecondName(getPara("demand_second_name")); 
-		renderJson(service.update(dd));
+		DataPhysique dp = service.queryById(Long.parseLong(getPara("physique_id")));
+		dp.setPhysiqueName(getPara("physique_name"));
+		dp.setPhysiqueGuanlian(getPara("physique_guanlian"));
+		dp.setPhysiqueIntroduce(getPara("physique_introduce"));
+		renderJson(service.update(dp));
 	}
 	
 	/**
 	 * 添加需求
 	 */
-	@Before({POST.class,DataDemandValidator.class})
+	@Before({POST.class,DataPhysiqueValidator.class})
 	public void add(){
-		DataDemand dd = new DataDemand();
-		dd.setDemandNo(getPara("demand_no"));
-		dd.setDemandName(getPara("demand_name"));
-		dd.setDemandSecondName(getPara("demand_second_name"));
-		renderJson(service.create(dd));
+		DataPhysique dp = new DataPhysique();
+		dp.setPhysiqueNo(getPara("physique_no"));
+		dp.setDemandNo(getPara("demand_no"));
+		dp.setPhysiqueName(getPara("physique_name"));
+		dp.setPhysiqueGuanlian(getPara("physique_guanlian"));
+		dp.setPhysiqueIntroduce(getPara("physique_introduce"));
+		renderJson(service.create(dp));
 	}
 	
 	/**
@@ -81,22 +82,5 @@ public class DataDemandController extends Controller {
 	 */
 	public void remove(){
 		renderJson(service.delete(Long.parseLong(getPara("id"))));
-	}
-	
-	/**
-	 * 查询所有需求
-	 */
-	public void getAll(){
-		Ret ret = new Ret();
-		List<DataDemand> ddList = service.queryAll();
-		if(ddList != null && ddList.size() > 0){
-			ret.set("status","success");
-			ret.set("list",ddList);
-		}
-		else{
-			ret.set("status","fail");
-			ret.set("msg","没有查询到数据");
-		}
-		renderJson(ret);
 	}
 }
