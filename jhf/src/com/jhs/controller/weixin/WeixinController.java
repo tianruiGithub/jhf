@@ -14,7 +14,11 @@ import com.jfinal.weixin.sdk.interceptor.JSSDKInterceptor;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.sdk.utils.WeiXinUtils;
 import com.jhs.common.model.ConfWeixin;
+import com.jhs.common.model.DataChanpin;
+import com.jhs.common.model.DataSolution;
 import com.jhs.common.model.RecordUser;
+import com.jhs.service.data.DataChanpinService;
+import com.jhs.service.data.DataSolutionService;
 import com.jhs.service.data.RecordUserService;
 import com.jhs.service.system.ConfWeixinService;
 import com.jhs.util.DateUtil;
@@ -25,8 +29,8 @@ import com.jhs.util.DateUtil;
  * @author 天瑞
  *
  */
-public class WeixinController extends ApiController{
-	
+public class WeixinController extends ApiController {
+
 	@Override
 	public ApiConfig getApiConfig() {
 		ApiConfig ac = new ApiConfig();
@@ -39,11 +43,10 @@ public class WeixinController extends ApiController{
 		 * 是否对消息进行加密，对应于微信平台的消息加解密方式： 1：true进行加密且必须配置 encodingAesKey
 		 * 2：false采用明文模式，同时也支持混合模式
 		 */
-		if(cw.getEncryptMessage().equals("0")){
+		if (cw.getEncryptMessage().equals("0")) {
 			ac.setEncryptMessage(false);
 			ac.setEncodingAesKey("setting it in config");
-		}
-		else{
+		} else {
 			ac.setEncryptMessage(true);
 			ac.setEncodingAesKey(cw.getEncodingAeskey());
 		}
@@ -73,35 +76,38 @@ public class WeixinController extends ApiController{
 				if (userInfo.isSucceed()) {
 					String userStr = userInfo.toString();
 					subscribe = JSON.parseObject(userStr).getIntValue("subscribe");
-					//保存或更行用户信息
+					// 保存或更行用户信息
 					RecordUser ru = RecordUserService.me.queryById(openId);
-					if(ru != null){
+					if (ru != null) {
 						ru.setUserId(openId);
-						ru.setUserNickname(WeiXinUtils.filterWeixinEmoji(JSON.parseObject(userStr).getString("nickname")));
+						ru.setUserNickname(
+								WeiXinUtils.filterWeixinEmoji(JSON.parseObject(userStr).getString("nickname")));
 						ru.setUserSex(JSON.parseObject(userStr).getString("sex"));
 						ru.setUserCountry(JSON.parseObject(userStr).getString("country"));
 						ru.setUserProvince(JSON.parseObject(userStr).getString("province"));
 						ru.setUserCity(JSON.parseObject(userStr).getString("city"));
 						ru.setUserHead(JSON.parseObject(userStr).getString("headimgurl"));
-						ru.setUserSubscribeTime(DateUtil.formatTime(JSON.parseObject(userStr).getIntValue("subscribe_time")));
+						ru.setUserSubscribeTime(
+								DateUtil.formatTime(JSON.parseObject(userStr).getIntValue("subscribe_time")));
 						RecordUserService.me.update(ru);
-					}
-					else{
+					} else {
 						ru = new RecordUser();
 						ru.setUserId(openId);
-						ru.setUserNickname(WeiXinUtils.filterWeixinEmoji(JSON.parseObject(userStr).getString("nickname")));
+						ru.setUserNickname(
+								WeiXinUtils.filterWeixinEmoji(JSON.parseObject(userStr).getString("nickname")));
 						ru.setUserSex(JSON.parseObject(userStr).getString("sex"));
 						ru.setUserCountry(JSON.parseObject(userStr).getString("country"));
 						ru.setUserProvince(JSON.parseObject(userStr).getString("province"));
 						ru.setUserCity(JSON.parseObject(userStr).getString("city"));
 						ru.setUserHead(JSON.parseObject(userStr).getString("headimgurl"));
-						ru.setUserSubscribeTime(DateUtil.formatTime(JSON.parseObject(userStr).getIntValue("subscribe_time")));
+						ru.setUserSubscribeTime(
+								DateUtil.formatTime(JSON.parseObject(userStr).getIntValue("subscribe_time")));
 						RecordUserService.me.create(ru);
 					}
 				}
 			}
 			// 缓存信息
-			 setSessionAttr("OpenId", openId);
+			setSessionAttr("OpenId", openId);
 			// 未关注先关注
 			if (subscribe == 0) {
 				renderText("请先关注[见好]公众号！");
@@ -126,33 +132,113 @@ public class WeixinController extends ApiController{
 			renderText("请先通过微信网页授权认证！");
 		}
 	}
-	
+
 	/**
 	 * 皮肤测试
 	 */
 	@Before(JSSDKInterceptor.class)
-	public void pifu(){
-		setAttr("openId",getSessionAttr("OpenId"));
+	public void pifu() {
+		setAttr("openId", getSessionAttr("OpenId"));
 		render("test_pifu.jsp");
 	}
-	
+
 	/**
-	 * 皮肤测试
+	 * 祛痘测试
 	 */
 	@Before(JSSDKInterceptor.class)
-	public void qudou(){
-		setAttr("openId",getSessionAttr("OpenId"));
+	public void qudou() {
+		setAttr("openId", getSessionAttr("OpenId"));
 		render("test_qudou.jsp");
 	}
-	
+
 	/**
-	 * 皮肤测试
+	 * 日常护理测试
 	 */
 	@Before(JSSDKInterceptor.class)
-	public void richang(){
-		setAttr("openId",getSessionAttr("OpenId"));
+	public void richang() {
+		setAttr("openId", getSessionAttr("OpenId"));
 		render("test_richang.jsp");
 	}
-	
-	 
+
+	/**
+	 * 方案-主页
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void solution() {
+		DataSolution ds = DataSolutionService.me.queryByNo(getPara("no"));
+		if (ds != null) {
+			setAttr("solution_no", ds.getSolutionNo());
+			setAttr("solution_demand_name", ds.get("demand_name"));
+			setAttr("solution_demand_second_name", ds.get("demand_second_name"));
+			setAttr("solution_physique_no", ds.getPhysiqueNo());
+			setAttr("solution_physique_name", ds.get("physique_name"));
+			DataChanpin dc = DataChanpinService.me.queryByPhysique(ds.getPhysiqueNo());
+			if (dc != null) {
+				setAttr("solution_chanpin_link", dc.getChanpinLink());
+				setAttr("solution_chanpin_image", dc.getChanpinImage());
+				setAttr("solution_chanpin_color", dc.getChanpinColor());
+			}
+		}
+		render("solution.jsp");
+	}
+	/**
+	 * 方案-面膜
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void mianmo(){
+		DataSolution ds = DataSolutionService.me.queryByPhysique(getPara("no"));
+		if(ds != null)
+			setAttr("res",ds.getSolutionMianmo());
+		render("solution_mianmo.jsp");
+	}
+	/**
+	 * 方案-足浴
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void zuyu(){
+		DataSolution ds = DataSolutionService.me.queryByNo(getPara("no"));
+		if(ds != null)
+			setAttr("res",ds.getSolutionZuyu());
+		render("solution_zuyu.jsp");
+	}
+	/**
+	 * 方案-足浴
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void baguan(){
+		DataSolution ds = DataSolutionService.me.queryByNo(getPara("no"));
+		if(ds != null)
+			setAttr("res",ds.getSolutionBaguan());
+		render("solution_baguan.jsp");
+	}
+	/**
+	 * 方案-茶饮
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void cha(){
+		DataSolution ds = DataSolutionService.me.queryByNo(getPara("no"));
+		if(ds != null)
+			setAttr("res",ds.getSolutionChayin());
+		render("solution_cha.jsp");
+	}
+	/**
+	 * 方案-易食
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void yishi(){
+		DataSolution ds = DataSolutionService.me.queryByPhysique(getPara("no"));
+		if(ds != null)
+			setAttr("res",ds.getSolutionYishi());
+		render("solution_yishi.jsp");
+	}
+	/**
+	 * 方案-易食
+	 */
+	@Before(JSSDKInterceptor.class)
+	public void jishi(){
+		DataSolution ds = DataSolutionService.me.queryByPhysique(getPara("no"));
+		if(ds != null)
+			setAttr("res",ds.getSolutionJishi());
+		render("solution_jishi.jsp");
+	}
 }

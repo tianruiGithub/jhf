@@ -25,14 +25,6 @@ public abstract class BaseRecordTest<M extends BaseRecordTest<M>> extends Model<
 		return get("user_id");
 	}
 
-	public void setSolutionNo(java.lang.String solutionNo) {
-		set("solution_no", solutionNo);
-	}
-
-	public java.lang.String getSolutionNo() {
-		return get("solution_no");
-	}
-
 	public void setDemandNo(java.lang.String demandNo) {
 		set("demand_no", demandNo);
 	}
@@ -48,7 +40,15 @@ public abstract class BaseRecordTest<M extends BaseRecordTest<M>> extends Model<
 	public java.lang.String getPhysiqueNo() {
 		return get("physique_no");
 	}
-	
+
+	public void setSolutionNo(java.lang.String solutionNo) {
+		set("solution_no", solutionNo);
+	}
+
+	public java.lang.String getSolutionNo() {
+		return get("solution_no");
+	}
+
 	public void setTestFeature(java.lang.String testFeature) {
 		set("test_feature", testFeature);
 	}

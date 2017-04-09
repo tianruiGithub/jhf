@@ -17,14 +17,6 @@ public abstract class BaseDataSolution<M extends BaseDataSolution<M>> extends Mo
 		return get("solution_id");
 	}
 
-	public void setPhysiqueNo(java.lang.String physiqueNo) {
-		set("physique_no", physiqueNo);
-	}
-
-	public java.lang.String getPhysiqueNo() {
-		return get("physique_no");
-	}
-
 	public void setSolutionNo(java.lang.String solutionNo) {
 		set("solution_no", solutionNo);
 	}
@@ -33,124 +25,92 @@ public abstract class BaseDataSolution<M extends BaseDataSolution<M>> extends Mo
 		return get("solution_no");
 	}
 
-	public void setChayin1(java.lang.String chayin1) {
-		set("chayin1", chayin1);
+	public void setPhysiqueNo(java.lang.String physiqueNo) {
+		set("physique_no", physiqueNo);
 	}
 
-	public java.lang.String getChayin1() {
-		return get("chayin1");
+	public java.lang.String getPhysiqueNo() {
+		return get("physique_no");
 	}
 
-	public void setChayin2(java.lang.String chayin2) {
-		set("chayin2", chayin2);
+	public void setSolutionScoreUp(java.lang.Integer solutionScoreUp) {
+		set("solution_score_up", solutionScoreUp);
 	}
 
-	public java.lang.String getChayin2() {
-		return get("chayin2");
+	public java.lang.Integer getSolutionScoreUp() {
+		return get("solution_score_up");
 	}
 
-	public void setChayin3(java.lang.String chayin3) {
-		set("chayin3", chayin3);
+	public void setSolutionScoreDown(java.lang.Integer solutionScoreDown) {
+		set("solution_score_down", solutionScoreDown);
 	}
 
-	public java.lang.String getChayin3() {
-		return get("chayin3");
+	public java.lang.Integer getSolutionScoreDown() {
+		return get("solution_score_down");
 	}
 
-	public void setBaguan1(java.lang.String baguan1) {
-		set("baguan1", baguan1);
+	public void setSolutionChayin(java.lang.String solutionChayin) {
+		set("solution_chayin", solutionChayin);
 	}
 
-	public java.lang.String getBaguan1() {
-		return get("baguan1");
+	public java.lang.String getSolutionChayin() {
+		return get("solution_chayin");
 	}
 
-	public void setBaguan2(java.lang.String baguan2) {
-		set("baguan2", baguan2);
+	public void setSolutionZuyu(java.lang.String solutionZuyu) {
+		set("solution_zuyu", solutionZuyu);
 	}
 
-	public java.lang.String getBaguan2() {
-		return get("baguan2");
+	public java.lang.String getSolutionZuyu() {
+		return get("solution_zuyu");
 	}
 
-	public void setBaguan3(java.lang.String baguan3) {
-		set("baguan3", baguan3);
+	public void setSolutionBaguan(java.lang.String solutionBaguan) {
+		set("solution_baguan", solutionBaguan);
 	}
 
-	public java.lang.String getBaguan3() {
-		return get("baguan3");
+	public java.lang.String getSolutionBaguan() {
+		return get("solution_baguan");
 	}
 
-	public void setZuyu1(java.lang.String zuyu1) {
-		set("zuyu1", zuyu1);
+	public void setSolutionAijiu(java.lang.String solutionAijiu) {
+		set("solution_aijiu", solutionAijiu);
 	}
 
-	public java.lang.String getZuyu1() {
-		return get("zuyu1");
+	public java.lang.String getSolutionAijiu() {
+		return get("solution_aijiu");
 	}
 
-	public void setZuyu2(java.lang.String zuyu2) {
-		set("zuyu2", zuyu2);
+	public void setSolutionTiefu(java.lang.String solutionTiefu) {
+		set("solution_tiefu", solutionTiefu);
 	}
 
-	public java.lang.String getZuyu2() {
-		return get("zuyu2");
+	public java.lang.String getSolutionTiefu() {
+		return get("solution_tiefu");
 	}
 
-	public void setZuyu3(java.lang.String zuyu3) {
-		set("zuyu3", zuyu3);
+	public void setSolutionMianmo(java.lang.String solutionMianmo) {
+		set("solution_mianmo", solutionMianmo);
 	}
 
-	public java.lang.String getZuyu3() {
-		return get("zuyu3");
+	public java.lang.String getSolutionMianmo() {
+		return get("solution_mianmo");
 	}
 
-	public void setAijiu1(java.lang.String aijiu1) {
-		set("aijiu1", aijiu1);
+	public void setSolutionYishi(java.lang.String solutionYishi) {
+		set("solution_yishi", solutionYishi);
 	}
 
-	public java.lang.String getAijiu1() {
-		return get("aijiu1");
+	public java.lang.String getSolutionYishi() {
+		return get("solution_yishi");
 	}
 
-	public void setAijiu2(java.lang.String aijiu2) {
-		set("aijiu2", aijiu2);
+	public void setSolutionJishi(java.lang.String solutionJishi) {
+		set("solution_jishi", solutionJishi);
 	}
 
-	public java.lang.String getAijiu2() {
-		return get("aijiu2");
-	}
-
-	public void setAijiu3(java.lang.String aijiu3) {
-		set("aijiu3", aijiu3);
-	}
-
-	public java.lang.String getAijiu3() {
-		return get("aijiu3");
-	}
-
-	public void setTiefu1(java.lang.String tiefu1) {
-		set("tiefu1", tiefu1);
-	}
-
-	public java.lang.String getTiefu1() {
-		return get("tiefu1");
-	}
-
-	public void setTiefu2(java.lang.String tiefu2) {
-		set("tiefu2", tiefu2);
-	}
-
-	public java.lang.String getTiefu2() {
-		return get("tiefu2");
-	}
-
-	public void setTiefu3(java.lang.String tiefu3) {
-		set("tiefu3", tiefu3);
-	}
-
-	public java.lang.String getTiefu3() {
-		return get("tiefu3");
+	public java.lang.String getSolutionJishi() {
+		return get("solution_jishi");
 	}
 
 }

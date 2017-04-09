@@ -26,7 +26,7 @@ public class DataQuestionController extends Controller{
 	 */
 	@Clear({ SessionInterceptor.class, MenuInterceptor.class })
 	@Before(POST.class)
-	public void query(){
+	public void get(){
 		Ret ret = new Ret();
 		List<DataQuestion> dqList = DataQuestionService.me.queryByDemand(getPara("demandNo"));
 		if(dqList !=null){

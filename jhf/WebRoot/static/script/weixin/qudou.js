@@ -1,4 +1,4 @@
-﻿var type = "";
+var type = "";
 var img = "";
 var color = "";
 var scoreList = "";
@@ -30,31 +30,14 @@ $("#kaishi").click(function() {
 	$("#page1").css("display", "block");
 
 });
-$("#first3").click(function() {
- 
+$("#first").click(function() {
+	if (type != "") {
 		$("#page1").css("display", "none");
 		$("#page2").css("display", "block");
 		initQuestion();
-	 
-});
-$(".type").click(function(){
-		if($(this).attr("state") == "0"){
-			$(this).attr("state","1");
-			$(this).css("background-color","#fe6b5b");
-			$(this).css("color","#fff");		
-		}
-		else{
-			$(this).attr("state","0");
-			$(this).css("background-color","#fff");
-			$(this).css("color","#666");
-		}
-	});
-$("#first2").click(function() {
-	type = "";
-	$("#page1").css("display", "none");
-	$("#page2").css("display", "block");
-	initQuestion();
-
+	} else {
+		alert("请选择你最容易起痘痘的区域！");
+	}
 });
 
 $(".face-type").click(function() {
@@ -141,7 +124,7 @@ function initQuestion() {
 		type : "post",
 		url : "/jhf/data/question/get",
 		data : {
-			"demandNo" : "07"
+			"demandNo" : "02"
 		},
 		success : function(res, textStatus) {
 
@@ -344,7 +327,7 @@ function beginJishi() {
 					url : "/jhf/data/test/add",
 					data : {
 						"openId" : openId,
-						"demandNo" : "07",
+						"demandNo" : "02",
 						"imageData" : img,
 						"feature" : type,
 						"color" : color,
@@ -370,3 +353,8 @@ function beginJishi() {
 
 	}, 100);
 }
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+    }

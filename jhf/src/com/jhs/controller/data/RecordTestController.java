@@ -58,7 +58,7 @@ public class RecordTestController extends Controller{
 	 */
 	@Clear({ SessionInterceptor.class, MenuInterceptor.class })
 	@Before(POST.class)
-	public void create(){
+	public void add(){
 		Ret ret = new Ret();
 		if(RecordTestService.me.create(getPara("openId"), getPara("demandNo"), getPara("imageData"), getPara("feature"), getPara("color"), getPara("scoreList"))){
 			ret.set("status","success");

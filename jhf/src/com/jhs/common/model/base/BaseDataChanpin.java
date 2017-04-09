@@ -41,4 +41,20 @@ public abstract class BaseDataChanpin<M extends BaseDataChanpin<M>> extends Mode
 		return get("chanpin_link");
 	}
 
+	public void setChanpinColor(java.lang.String chanpinColor) {
+		set("chanpin_color", chanpinColor);
+	}
+
+	public java.lang.String getChanpinColor() {
+		return get("chanpin_color");
+	}
+
+	public void setChanpinImage(java.lang.String chanpinImage) {
+		set("chanpin_image", chanpinImage);
+	}
+
+	public java.lang.String getChanpinImage() {
+		return get("chanpin_image");
+	}
+
 }

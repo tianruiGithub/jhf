@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseDataSolution;
  */
 @SuppressWarnings("serial")
 public class DataSolution extends BaseDataSolution<DataSolution> {
-	public static final DataSolution dao = new DataSolution().dao();
+	
 }

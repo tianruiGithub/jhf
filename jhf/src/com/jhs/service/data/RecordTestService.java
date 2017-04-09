@@ -3,36 +3,47 @@ package com.jhs.service.data;
 import java.util.Date;
 import java.util.List;
 
+import com.jfinal.kit.PropKit;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.sdk.api.ApiResult;
 import com.jfinal.weixin.sdk.api.TemplateData;
 import com.jfinal.weixin.sdk.api.TemplateMsgApi;
 import com.jhs.common.model.DataPhysique;
+import com.jhs.common.model.DataSolution;
 import com.jhs.common.model.RecordTest;
 
 /**
  * 辩证检测Service
+ * 
  * @author 天瑞
  *
  */
 public class RecordTestService {
-	
+
 	public static RecordTestService me = new RecordTestService();
-	
+
 	private static final RecordTest dao = new RecordTest().dao();
-	
+
 	/**
 	 * 检测记录添加
-	 * @param openId 微信用户openId
-	 * @param demandNo 需求编号
-	 * @param imageData 舌像数据
-	 * @param feature 所属特性分类
-	 * @param color 舌像检测结果
-	 * @param scoreList 分数
+	 * 
+	 * @param openId
+	 *            微信用户openId
+	 * @param demandNo
+	 *            需求编号
+	 * @param imageData
+	 *            舌像数据
+	 * @param feature
+	 *            所属特性分类
+	 * @param color
+	 *            舌像检测结果
+	 * @param scoreList
+	 *            分数
 	 */
-	public boolean create(String openId,String demandNo,String imageData,String feature,String color,String scoreList){
-		//初始变量
+	public boolean create(String openId, String demandNo, String imageData, String feature, String color,
+			String scoreList) {
+		// 初始变量
 		String physiqueNo = null;
 		String physiqueName = null;
 		int max = 0;
@@ -40,7 +51,7 @@ public class RecordTestService {
 		int item = 0;
 		int temp;
 		DataPhysique dp;
-		//获取体质列表
+		// 获取体质列表
 		List<DataPhysique> pList = DataPhysiqueService.me.queryByDemand(demandNo);
 		// 获取最大分数
 		String[] list = scoreList.split("I");
@@ -72,14 +83,14 @@ public class RecordTestService {
 			if (temp > 100) {
 				temp = 100;
 			}
-			 
+
 			if (temp >= max) {
 				physiqueNo = dp.getPhysiqueNo();
 				physiqueName = dp.getPhysiqueName();
 				max = temp;
 			}
 		}
-		//保存数据
+		// 保存数据
 		RecordTest rt = new RecordTest();
 		rt.setUserId(openId);
 		rt.setDemandNo(demandNo);
@@ -91,23 +102,32 @@ public class RecordTestService {
 		rt.setTestScore(max);
 		rt.setTestScoreList(scoreList);
 		rt.setTestTime(new Date());
-		if(rt.save()){
-			ApiConfigKit.setThreadLocalApiConfig(new ApiConfig());
-			ApiResult result = TemplateMsgApi.send(TemplateData.New()
-					// 消息接收者
-					.setTouser(openId)
-					// 模板id
-					.setTemplate_id("-UeDTpo8DDAHQmQdsuFHaotkk_-OlPwfBusBoH79OQk").setTopcolor("#eb414a")
-					.setUrl("")
-					// 模板参数
-					.add("first", "您好，您的检测结果出来了\n", "#999")
-					.add("keyword1", "日常护肤检测", "#999")
-					.add("keyword2", "您的肤质属于["+physiqueName+"]型", "#999")
-					.add("remark", "\n请返回拼团活动页面，选择["+physiqueName+"]型黑皂。\n", "#999").build());
-			TemplateMsgApi.send(result.getJson());
-			return true;
-		}
-		else{
+		if (rt.save()) {
+			String typeName = "";
+			if (demandNo.equals("02")) {
+				typeName = "祛痘检测";
+			} else if (demandNo.equals("07")) {
+				typeName = "日常护肤检测";
+			}
+			DataSolution ds = DataSolutionService.me.queryByPhysiqueAndScore(physiqueNo, max);
+			if (ds != null) {
+				ApiConfigKit.setThreadLocalApiConfig(new ApiConfig());
+				ApiResult result = TemplateMsgApi.send(TemplateData.New()
+						// 消息接收者
+						.setTouser(openId)
+						// 模板id
+						.setTemplate_id("-UeDTpo8DDAHQmQdsuFHaotkk_-OlPwfBusBoH79OQk").setTopcolor("#eb414a")
+						.setUrl(PropKit.get("url") + "/weixin/solution?no="+ds.getSolutionNo())
+						// 模板参数
+						.add("first", "您好，您的检测结果出来了\n", "#999").add("keyword1", typeName, "#999")
+						.add("keyword2", "您的肤质属于[" + physiqueName + "]型", "#999")
+						.add("remark", "\n点击查看我们为您定制的护理方案。", "#999").build());
+				TemplateMsgApi.send(result.getJson());
+				return true;
+			} else {
+				return false;
+			}
+		} else {
 			return false;
 		}
 	}

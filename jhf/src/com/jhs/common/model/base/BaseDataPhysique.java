@@ -17,20 +17,20 @@ public abstract class BaseDataPhysique<M extends BaseDataPhysique<M>> extends Mo
 		return get("physique_id");
 	}
 
-	public void setDemandNo(java.lang.String demandNo) {
-		set("demand_no", demandNo);
-	}
-
-	public java.lang.String getDemandNo() {
-		return get("demand_no");
-	}
-
 	public void setPhysiqueNo(java.lang.String physiqueNo) {
 		set("physique_no", physiqueNo);
 	}
 
 	public java.lang.String getPhysiqueNo() {
 		return get("physique_no");
+	}
+
+	public void setDemandNo(java.lang.String demandNo) {
+		set("demand_no", demandNo);
+	}
+
+	public java.lang.String getDemandNo() {
+		return get("demand_no");
 	}
 
 	public void setPhysiqueName(java.lang.String physiqueName) {

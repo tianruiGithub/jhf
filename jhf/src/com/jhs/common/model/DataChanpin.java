@@ -7,5 +7,5 @@ import com.jhs.common.model.base.BaseDataChanpin;
  */
 @SuppressWarnings("serial")
 public class DataChanpin extends BaseDataChanpin<DataChanpin> {
-	public static final DataChanpin dao = new DataChanpin().dao();
+
 }
